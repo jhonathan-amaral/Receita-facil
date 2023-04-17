@@ -33,6 +33,7 @@ export function Routes() {
           },
         }}
       />
+
       <Tab.Screen
         name="favorites"
         component={Favorites}

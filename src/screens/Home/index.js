@@ -12,13 +12,20 @@ import { Logo } from "../../components/Logo";
 import { Ionicons } from "@expo/vector-icons";
 import api from "../../services/api";
 import { Foodlist } from "../../components/foodlist";
+import { useNavigation } from "@react-navigation/native";
+
+import { Text as MotiText } from "moti";
 
 export function Home() {
   const [inputValue, setInputValue] = useState("");
   const [foods, setFoods] = useState([]);
+  const navigation = useNavigation();
 
   function handleSearch() {
-    console.log(inputValue);
+    if (!inputValue) return;
+    let input = inputValue;
+    navigation.navigate("Search", { name: input });
+
     setInputValue("");
   }
 
@@ -33,8 +40,42 @@ export function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <Logo />
-      <Text style={styles.title}>Encontre a receita</Text>
-      <Text style={styles.title}>que combine com você</Text>
+      <MotiText
+        style={styles.title}
+        from={{
+          opacity: 0,
+          translateY: 15,
+        }}
+        animate={{
+          opacity: 1,
+          translateY: 0,
+        }}
+        transition={{
+          delay: 100,
+          type: "timing",
+          duration: 650,
+        }}
+      >
+        Encontre a receita
+      </MotiText>
+      <MotiText
+        style={styles.title}
+        from={{
+          opacity: 0,
+          translateY: 18,
+        }}
+        animate={{
+          opacity: 1,
+          translateY: 0,
+        }}
+        transition={{
+          delay: 200,
+          type: "timing",
+          duration: 850,
+        }}
+      >
+        que combine com você
+      </MotiText>
 
       <View style={styles.form}>
         <TextInput
@@ -43,10 +84,12 @@ export function Home() {
           value={inputValue}
           onChangeText={setInputValue}
         />
+
         <TouchableOpacity activeOpacity={0.8} onPress={handleSearch}>
           <Ionicons name="search" size={28} color="#4cbe6c" />
         </TouchableOpacity>
       </View>
+
       <FlatList
         data={foods}
         keyExtractor={(item) => String(item.id)}

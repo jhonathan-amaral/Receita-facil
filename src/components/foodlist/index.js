@@ -1,7 +1,7 @@
-import React from "react";
 import { Text, StyleSheet, Image, TouchableOpacity, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+
+import { LinearGradient } from "expo-linear-gradient";
 
 export function Foodlist({ data }) {
   const navigation = useNavigation();
@@ -17,12 +17,14 @@ export function Foodlist({ data }) {
       onPress={handleNavigate}
     >
       <Image source={{ uri: data.cover }} style={styles.cover} />
+
       <View style={styles.info}>
         <Text style={styles.name}>{data.name}</Text>
         <Text style={styles.description}>
           {data.total_ingredients} Ingrediente | {data.time} min
         </Text>
       </View>
+
       <LinearGradient
         style={styles.gradient}
         colors={["transparent", "rgba(0,0,0,0.70)", "rgba(0,0,0,0.95)"]}

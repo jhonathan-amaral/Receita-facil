@@ -1,11 +1,11 @@
 import axios from "axios";
 
 /*
-//Rodar com IPV4: json-server --watch -d 180 --host 192.168.1.144 db.json
+//Rodar com IPV4: json-server --watch -d 180 --host 192.168.1.125 db.json
 */
 
 const api = axios.create({
-  baseURL: "http://192.168.1.144:3000/",
+  baseURL: "http://192.168.1.125:3000/",
 });
 
 export default api;
